@@ -1,6 +1,6 @@
 # boxify for 007
 
-Link to 007: [007 programming language](https://github.com/masak/007)
+Link to [007 programming language](https://github.com/masak/007)
 
 **usage:** boxify(text, 4);
 
