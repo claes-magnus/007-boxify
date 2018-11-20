@@ -1,42 +1,42 @@
 my text = [
-    "This is random text",
+    "This is a random text",
     "that will be boxed with this function.",
     "I have set it to be 3"
 ];
 
 boxify(text, 4);
 
-func boxify(strings_to_box, w_on_sides) {
+func boxify(stringsToBox, wOnSides) {
 
     my index = 0;
-    my longest_str_len = 0;
+    my longestStrLen = 0;
 
-    for(strings_to_box) -> string {
-        my str_len = string.chars();
-        if(str_len > longest_str_len) {
-            longest_str_len = str_len;
+    for(stringsToBox) -> string {
+        my strLength = string.chars();
+        if(strLength > longestStrLen) {
+            longestStrLen = strLength;
         }
     }
 
-    my box_w = longest_str_len + w_on_sides;
+    my boxWidth = longestStrLen + wOnSides;
 
-    say(generate_top(box_w));
+    say(generateTop(boxWidth));
 
-    for(strings_to_box) -> print_ln {
+    for(stringsToBox) -> printLn {
         my ln = "║";
 
-        ln = ln ~generate_w_space_before(w_on_sides);
-        ln = ln ~print_ln;
-        ln = ln ~generate_w_space_after(w_on_sides,print_ln.chars(),longest_str_len);
+        ln = ln ~generateWSpaceBefore(wOnSides);
+        ln = ln ~printLn;
+        ln = ln ~generateWSpaceAfter(wOnSides,printLn.chars(),longestStrLen);
         ln = ln ~"║";
         say(ln);
     }
 
-    say(generate_bottom(box_w));
+    say(generateBottom(boxWidth));
 
 }
 
-func generate_top(w) {
+func generateTop(w) {
     my top = "╔";
     my line = "";
     my counter = 0;
@@ -48,7 +48,7 @@ func generate_top(w) {
     return top_line;
 }
 
-func generate_bottom(w) {
+func generateBottom(w) {
     my top = "╚";
     my line = "";
     my counter = 0;
@@ -60,25 +60,22 @@ func generate_bottom(w) {
     return top_line;
 }
 
-func generate_w_space_before(w) {
+func generateWSpaceBefore(w) {
     my spaces = w-1;
-    my spaces_ln = "";
+    my spacesLn = "";
     for(^spaces) {
-        spaces_ln = spaces_ln ~" ";
+        spacesLn = spacesLn ~" ";
     }
-    return spaces_ln;
+    return spacesLn;
 }
 
-func generate_w_space_after(w,this,max) {
+func generateWSpaceAfter(w,this,max) {
 
     my spaces = max - this + (w-1);
 
-    my spaces_ln = "";
+    my spacesLn = "";
     for(^spaces) {
-        spaces_ln = spaces_ln ~" ";
+        spacesLn = spacesLn ~" ";
     }
-    return spaces_ln;
+    return spacesLn;
 }
-
-
-
