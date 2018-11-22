@@ -6,14 +6,14 @@ my text = [
 
 boxify(text, 4);
 
-func boxify(stringsToBox, wOnSides) {
+func boxify(stringsToBox,wOnSides) {
 
     my index = 0;
     my longestStrLen = 0;
 
-    for(stringsToBox) -> string {
+    for stringsToBox -> string {
         my strLength = string.chars();
-        if(strLength > longestStrLen) {
+        if strLength > longestStrLen {
             longestStrLen = strLength;
         }
     }
@@ -22,13 +22,13 @@ func boxify(stringsToBox, wOnSides) {
 
     say(generateTop(boxWidth));
 
-    for(stringsToBox) -> printLn {
+    for stringsToBox -> printLn {
         my ln = "║";
 
-        ln = ln ~generateWSpaceBefore(wOnSides);
-        ln = ln ~printLn;
-        ln = ln ~generateWSpaceAfter(wOnSides,printLn.chars(),longestStrLen);
-        ln = ln ~"║";
+        ln = ln ~ generateWSpaceBefore(wOnSides);
+        ln = ln ~ printLn;
+        ln = ln ~ generateWSpaceAfter(wOnSides,printLn.chars(),longestStrLen);
+        ln = ln ~ "║";
         say(ln);
     }
 
@@ -44,8 +44,8 @@ func generateTop(w) {
         line = line ~ "═";
         counter = counter + 1;
     }
-    my top_line = ~top ~line ~"╗";
-    return top_line;
+    my topLine = ~ top ~ line ~ "╗";
+    return topLine;
 }
 
 func generateBottom(w) {
@@ -56,15 +56,15 @@ func generateBottom(w) {
         line = line ~ "═";
         counter = counter + 1;
     }
-    my top_line = ~top ~line ~"╝";
-    return top_line;
+    my topLine = ~ top ~ line ~ "╝";
+    return topLine;
 }
 
 func generateWSpaceBefore(w) {
     my spaces = w-1;
     my spacesLn = "";
-    for(^spaces) {
-        spacesLn = spacesLn ~" ";
+    for ^spaces {
+        spacesLn = spacesLn ~ " ";
     }
     return spacesLn;
 }
@@ -74,8 +74,8 @@ func generateWSpaceAfter(w,this,max) {
     my spaces = max - this + (w-1);
 
     my spacesLn = "";
-    for(^spaces) {
-        spacesLn = spacesLn ~" ";
+    for ^spaces {
+        spacesLn = spacesLn ~ " ";
     }
     return spacesLn;
 }
