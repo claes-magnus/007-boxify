@@ -7,7 +7,7 @@ Link to [007 programming language](https://github.com/masak/007)
 my text = [
     "This is random text",
     "that will be boxed with this function.",
-    "I have set it to be 3"
+    "I have set it to be 4"
 ];
 
 boxify(text, 4);
