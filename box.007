@@ -7,7 +7,6 @@ my text = [
 boxify(text, 4);
 
 func boxify(stringsToBox,wOnSides) {
-
     my index = 0;
     my longestStrLen = 0;
 
@@ -17,23 +16,19 @@ func boxify(stringsToBox,wOnSides) {
             longestStrLen = strLength;
         }
     }
-
     my boxWidth = longestStrLen + wOnSides;
 
     say(generateTop(boxWidth));
 
     for stringsToBox -> printLn {
         my ln = "║";
-
         ln = ln ~ generateWSpaceBefore(wOnSides);
         ln = ln ~ printLn;
         ln = ln ~ generateWSpaceAfter(wOnSides,printLn.chars(),longestStrLen);
         ln = ln ~ "║";
         say(ln);
     }
-
     say(generateBottom(boxWidth));
-
 }
 
 func generateTop(w) {
@@ -70,7 +65,6 @@ func generateWSpaceBefore(w) {
 }
 
 func generateWSpaceAfter(w,this,max) {
-
     my spaces = max - this + (w-1);
 
     my spacesLn = "";
