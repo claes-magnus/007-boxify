@@ -59,3 +59,7 @@ Outputs:
 ║                      ║
 ╚══════════════════════╝
 ```
+
+#### Future features
+
+- centered text (the ground work is already in place with the half-function)
