@@ -2,14 +2,58 @@
 
 Link to [007 programming language](https://github.com/masak/007)
 
-**usage:** 
+**syntax:**
+boxify([<array-of-string>], <width-on-sides>, <horizontal-white-lines-before-and-after>);
 
-my text = [
-    "This is random text",
-    "that will be boxed with this function.",
-    "I have set it to be 4"
-];
+*The width must be an even integer. If not, it'll get rounded up to the closest even integer.*
 
-boxify(text, 4);
+**usage:**
 
-![screen shot](https://github.com/claes-magnus/007-boxify/blob/master/ss.png)
+```
+boxify(["hej","på dig", "GRUFFALON!"], 2, 1);
+boxify(["hej","på dig", "GRUFFALON!"], 3, 2);
+boxify(["hej","på dig", "GRUFFALON!"], 4, 0);
+boxify(["hej","på dig", "GRUFFALON!"], 5, 1);
+boxify(["hej","på dig", "GRUFFALON!"], 6, 3);
+```
+
+Outputs:
+╔══════════════╗
+║              ║
+║  hej         ║
+║  på dig      ║
+║  GRUFFALON!  ║
+║              ║
+╚══════════════╝
+╔══════════════════╗
+║                  ║
+║                  ║
+║    hej           ║
+║    på dig        ║
+║    GRUFFALON!    ║
+║                  ║
+║                  ║
+╚══════════════════╝
+╔══════════════════╗
+║    hej           ║
+║    på dig        ║
+║    GRUFFALON!    ║
+╚══════════════════╝
+╔══════════════════════╗
+║                      ║
+║      hej             ║
+║      på dig          ║
+║      GRUFFALON!      ║
+║                      ║
+╚══════════════════════╝
+╔══════════════════════╗
+║                      ║
+║                      ║
+║                      ║
+║      hej             ║
+║      på dig          ║
+║      GRUFFALON!      ║
+║                      ║
+║                      ║
+║                      ║
+╚══════════════════════╝

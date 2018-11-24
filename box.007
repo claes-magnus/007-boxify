@@ -1,84 +1,156 @@
-my text = [
-    "This is random text",
-    "that will be boxed with this function.",
-    "I have set it to be 3"
-];
+# tests and examples array, string and integer:
+# boxify("hej", 4);
+# boxify(text, 4);
+# boxify(3, 4);
 
-boxify(text, 4);
+# tests if width works:
+boxify(["hej","på dig", "GRUFFALON!"], 2, 1);
+boxify(["hej","på dig", "GRUFFALON!"], 3, 2);
+boxify(["hej","på dig", "GRUFFALON!"], 4, 0);
+boxify(["hej","på dig", "GRUFFALON!"], 5, 1);
+boxify(["hej","på dig", "GRUFFALON!"], 6, 3);
 
-func boxify(strings_to_box, w_on_sides) {
+
+func boxify(stringsToBox, wOnSides, hFreeSpace) {
 
     my index = 0;
-    my longest_str_len = 0;
+    my longestStrLen = 0;
 
-    for(strings_to_box) -> string {
-        my str_len = string.chars();
-        if(str_len > longest_str_len) {
-            longest_str_len = str_len;
+    if !isEven(wOnSides) {
+      wOnSides = wOnSides + 1;
+    }
+
+    my tempHWS = hFreeSpace;
+
+    if stringsToBox !~~ Array {
+      if stringsToBox ~~ Str {
+        my tempStr = stringsToBox;
+        stringsToBox = [];
+        stringsToBox.push(tempStr);
+      } else if stringsToBox ~~ Int {
+        my tempStr = ~stringsToBox;
+        stringsToBox = [];
+        stringsToBox.push(tempStr);
+      }
+    }
+
+    for stringsToBox -> string {
+        my strLength = string.chars();
+        if strLength > longestStrLen {
+            longestStrLen = strLength;
         }
     }
 
-    my box_w = longest_str_len + w_on_sides;
+    if(!isEven(longestStrLen)) {
+      longestStrLen = longestStrLen + 1;
+    }
 
-    say(generate_top(box_w));
+    my boxWidth = longestStrLen + (wOnSides * 2) - 2;
 
-    for(strings_to_box) -> print_ln {
+    say(generateTop(boxWidth));
+
+    generateHorizontalSpace(tempHWS, boxWidth);
+
+    for stringsToBox -> printLn {
+
         my ln = "║";
 
-        ln = ln ~generate_w_space_before(w_on_sides);
-        ln = ln ~print_ln;
-        ln = ln ~generate_w_space_after(w_on_sides,print_ln.chars(),longest_str_len);
-        ln = ln ~"║";
+        my thisLineLen = printLn.chars();
+
+        if !isEven(thisLineLen) {
+          thisLineLen = thisLineLen + 1;
+        }
+
+        ln = ln ~ generateWSpaceBefore(wOnSides);
+        ln = ln ~ printLn;
+        ln = ln ~ generateWSpaceAfter(wOnSides, thisLineLen, longestStrLen, printLn);
+        ln = ln ~ "║";
         say(ln);
     }
 
-    say(generate_bottom(box_w));
+    generateHorizontalSpace(tempHWS, boxWidth);
+
+    say(generateBottom(boxWidth));
+}
+
+func generateHorizontalSpace(tempHWS, boxWidth) {
+  my w = boxWidth + 2;
+
+  for ^tempHWS {
+    my ln = "║";
+
+    for ^w {
+        ln = ln ~ " ";
+    }
+
+    ln = ln ~ "║";
+    say(ln);
+  }
 
 }
 
-func generate_top(w) {
+func generateTop(w) {
     my top = "╔";
     my line = "";
     my counter = 0;
-    while (counter < (w+2)) {
+
+    while (counter < (w + 2)) {
         line = line ~ "═";
         counter = counter + 1;
     }
-    my top_line = ~top ~line ~"╗";
-    return top_line;
+    my topLine = ~ top ~ line ~ "╗";
+    return topLine;
 }
 
-func generate_bottom(w) {
+func generateBottom(w) {
     my top = "╚";
     my line = "";
     my counter = 0;
-    while (counter < (w+2)) {
+    while (counter < (w + 2)) {
         line = line ~ "═";
         counter = counter + 1;
     }
-    my top_line = ~top ~line ~"╝";
-    return top_line;
+    my topLine = ~ top ~ line ~ "╝";
+    return topLine;
 }
 
-func generate_w_space_before(w) {
-    my spaces = w-1;
-    my spaces_ln = "";
-    for(^spaces) {
-        spaces_ln = spaces_ln ~" ";
+func generateWSpaceBefore(w) {
+
+    my spacesLn = "";
+    for ^w {
+        spacesLn = spacesLn ~ " ";
     }
-    return spaces_ln;
+    return spacesLn;
 }
 
-func generate_w_space_after(w,this,max) {
+func generateWSpaceAfter(w, thisLnLength, longestStrLength, str) {
 
-    my spaces = max - this + (w-1);
+    my diffBetweenLongestAndThisLn = longestStrLength - thisLnLength;
 
-    my spaces_ln = "";
-    for(^spaces) {
-        spaces_ln = spaces_ln ~" ";
+    my spacesAfter = diffBetweenLongestAndThisLn + w;
+
+    if !isEven(str.chars()) {
+      spacesAfter = spacesAfter + 1;
     }
-    return spaces_ln;
+
+    my spacesLn = "";
+    for ^spacesAfter {
+        spacesLn = spacesLn ~ " ";
+    }
+    return spacesLn;
 }
 
+func isEven(value) {
+  return value %% 2;
+}
 
+func half(value) {
+  my tempVal = value;
+  my count = 0;
 
+  while (tempVal > 2) {
+    tempVal = tempVal - 2;
+    count = count + 1;
+  }
+  return count;
+}
