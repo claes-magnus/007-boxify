@@ -144,7 +144,7 @@ func isEven(value) {
   return value %% 2;
 }
 
-# this function will - I guess - be needed in future feature
+# this function will - I guess - be needed in the future centering feature
 func half(value) {
   my tempVal = value;
   my count = 0;
