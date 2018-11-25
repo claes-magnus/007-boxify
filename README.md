@@ -10,6 +10,7 @@ boxify([...array-of-string], width-on-sides, horizontal-white-lines-before-and-a
 **usage:**
 
 ```
+# "hej på dig, Gruffalon" basically means "Hello there, Gruffalon".
 boxify(["hej","på dig", "GRUFFALON!"], 2, 1);
 boxify(["hej","på dig", "GRUFFALON!"], 3, 2);
 boxify(["hej","på dig", "GRUFFALON!"], 4, 0);
