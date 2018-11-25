@@ -3,7 +3,7 @@
 Link to [007 programming language](https://github.com/masak/007)
 
 **syntax:**
-boxify([<array-of-string>], <width-on-sides>, <horizontal-white-lines-before-and-after>);
+boxify([...array-of-string], width-on-sides, horizontal-white-lines-before-and-after);
 
 *The width must be an even integer. If not, it'll get rounded up to the closest even integer.*
 
